@@ -1,24 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Nav from './components/Nav';
+import Menu from './components/Menu';
+import Users from './pages/Users';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from "react-router-dom";
+import Dashboard from './pages/Dashboard';
+import Register from './pages/Register';
+import Wrapper from './components/Wrapper';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+      <Nav />
+    
+    <div className="container-fluid">
+      <div className="row">
+        <Menu />
+    
+        <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <Routes>
+          <Route path={'/'}  element={<Dashboard/>} />
+          <Route path={'/users'} element={<Users/>} />
+          <Route path={'/register'} element={<Register/>} />
+      </Routes>
+        </main>
+      </div>
+    </div>
+    
+    </Router>
     </div>
   );
 }
